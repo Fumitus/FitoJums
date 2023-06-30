@@ -23,7 +23,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log('DB connection succesfull!');
+    // console.log('DB connection succesfull!');
   });
 // .then((con) => {
 //   console.log(con.connections);
