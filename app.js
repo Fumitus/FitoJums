@@ -16,6 +16,7 @@ const tourRouter = require('./routers/tourRoutes');
 const userRouter = require('./routers/userRoutes');
 const reviewRouter = require('./routers/reviewRoutes');
 const bookingRouter = require('./routers/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 
 const viewRouter = require('./routers/viewRoutes');
 
@@ -108,6 +109,13 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP. Please try again after an hour!',
 });
 app.use('/api', limiter);
+
+// request ateinantis turi b8ti STREAM, bet ne JSON formatu. Todel sis route yra sioje vientoje. Pries BODY PARSER funkcija
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 // Body parser, reading data from the body into req.body
 app.use(express.json({ limit: '10kb' }));
