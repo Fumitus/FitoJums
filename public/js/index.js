@@ -3,8 +3,9 @@ import 'regenerator-runtime/runtime.js';
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
-import { bookTour } from './stripe';
 import { showAlert } from './alerts';
+import { newpost } from './post';
+import { newreview } from './review';
 
 // DOM elements
 const mapBox = document.getElementById('map');
@@ -12,7 +13,28 @@ const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
-const bookBtn = document.getElementById('book-tour');
+const postForm = document.querySelector('.form-post-data');
+const reviewForm = document.querySelector('.form-review-data');
+
+if (reviewForm) {
+  reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const post = document.getElementById('postId').value;
+    const review = document.getElementById('review').value;
+
+    newreview({ review, post }, 'data');
+  });
+}
+
+if (postForm) {
+  postForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const body = document.getElementById('body').value;
+    const author = document.getElementById('author').value;
+
+    newpost({ body, author }, 'data');
+  });
+}
 
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
@@ -71,13 +93,6 @@ if (userPasswordForm) {
     document.getElementById('password-confirm').value = '';
   });
 }
-
-if (bookBtn)
-  bookBtn.addEventListener('click', (e) => {
-    e.target.textContent = 'Processing...';
-    const { tourId } = e.target.dataset;
-    bookTour(tourId);
-  });
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alert) showAlert('success', alertMessage, 20);

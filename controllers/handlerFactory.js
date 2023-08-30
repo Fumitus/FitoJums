@@ -44,14 +44,14 @@ exports.createOneDoc = (Model) =>
     res.status(201).json({
       status: 'success',
       data: {
-        datra: newDoc,
+        data: newDoc,
       },
     });
   });
 
 exports.getOneDoc = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
-    let query = Model.findById(req.params.id);
+    let query = Model.findById(req.params.postId);
     if (popOptions) query = query.populate(popOptions);
     const doc = await query;
 
@@ -72,7 +72,7 @@ exports.getAllDocs = (Model) =>
   catchAsync(async (req, res, next) => {
     // To allow nested GET reviews for tour. <<<HACK>>>
     let filter = {};
-    if (req.params.tourId) filter = { tour: req.params.tourId };
+    if (req.body.author_id) filter = { author_id: req.body.author_id };
 
     // EXECUTE A QUERY
     const features = new APIFeatures(Model.find(filter), req.query)

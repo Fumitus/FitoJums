@@ -1,7 +1,7 @@
 {
   "name": "familia",
   "version": "1.0.0",
-  "description": "learning to build familia-nostra with node.js and mongoDB",
+  "description": "familia-nostra with node.js and mongoDB",
   "main": "app.js",
   "targets": {
     "main": false

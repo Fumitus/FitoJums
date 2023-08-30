@@ -1,39 +1,52 @@
-const Tour = require('../models/tourModel');
+const Post = require('../models/postModel');
 const User = require('../models/userModel');
-const Booking = require('../models/bookingModel');
+
 const catchAsync = require('../utils/cachAsync');
 const AppError = require('../utils/appError');
-
-exports.alerts = (req, res, next) => {
-  const { alert } = req.query;
-  if (alert === 'booking')
-    res.locals.alert =
-      'your booking was succesful. Please check you email for a confirmation. If your boking does not show emmediatly, please come back later.';
-  next();
-};
+const APIFeatures = require('../utils/apiFeatures');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
-  const tours = await Tour.find();
+  const posts = await Post.find();
 
   res.status(200).render('overview', {
-    title: 'All tours',
-    tours: tours,
+    title: 'Visi įrašai',
+    posts: posts,
   });
 });
 
-exports.getTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findOne({ slug: req.params.slug }).populate({
+exports.getPost = catchAsync(async (req, res, next) => {
+  const post = await Post.findOne({ _id: req.params.postId }).populate({
     path: 'reviews',
-    fields: 'review rating user',
+    fields: 'review user',
   });
 
-  if (!tour) {
-    return next(new AppError('There is no tour with that name', 404));
+  if (!post) {
+    return next(new AppError('There is no Post with that name', 404));
   }
 
-  res.status(200).render('tour', {
-    title: `${tour.name} Tour`,
-    tour: tour,
+  res.status(200).render('post', {
+    title: `Vartotojo ${post.author_id} įrašas.`,
+    post: post,
+  });
+});
+
+exports.getMyPosts = catchAsync(async (req, res, next) => {
+  const posts = await Post.aggregate([
+    {
+      $match: { author_id: req.body.author_id },
+    },
+    {
+      $sort: { timeStamp: -1 },
+    },
+  ]);
+
+  if (!posts) {
+    return next(new AppError('You have no Posts', 404));
+  }
+
+  res.status(200).render('myposts', {
+    title: `Vartotojo įrašai.`,
+    posts,
   });
 });
 
@@ -48,20 +61,6 @@ exports.getAccount = (req, res) => {
     title: 'Your account',
   });
 };
-
-exports.getMyTours = catchAsync(async (req, res, next) => {
-  // 1) find all bookings
-  const bookings = await Booking.find({ user: req.user.id });
-
-  // 2) find bookings with the return IDs
-  const tourIDs = bookings.map((el) => el.tour);
-  const tours = await Tour.find({ _id: { $in: tourIDs } });
-
-  res.status(200).render('overview', {
-    title: 'My tours',
-    tours,
-  });
-});
 
 exports.updateUserData = catchAsync(async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(

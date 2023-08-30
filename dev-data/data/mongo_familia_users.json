@@ -1,0 +1,156 @@
+[{
+  "_id": {
+    "$oid": "64afb56ce872f33baf2e1b55"
+  },
+  "role": "admin",
+  "active": true,
+  "name": "Jonas Schmedtmann",
+  "email": "admin@natours.io",
+  "photo": "user-1.jpg",
+  "password": "$2a$12$Q0grHjH9PXc6SxivC8m12.2mZJ9BbKcgFpwSG4Y1ZEII8HJVzWeyS",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64b9454f3aba8936d9ea6830"
+  },
+  "photo": "default.jpg",
+  "role": "admin",
+  "active": true,
+  "name": "Test Andrius",
+  "email": "andriusbai@mailsac.com",
+  "password": "$2a$12$qyB5dPmh75nAgFf3j8zf.uoKctQufmuyE04SwXASHdJz9ZT5toMoO",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1689863503433"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce3f7ac92b92523b36ef0"
+  },
+  "photo": "default.jpg",
+  "role": "admin",
+  "active": true,
+  "name": "Andrius Baikštis",
+  "email": "abaikstys@gmail.com",
+  "password": "$2a$12$QlBijJQ2yUFHGGmT7O59pOT7hHTjHUMFGolwi6OM4Yt7LzzZwOOX2",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149303058"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce456ac92b92523b36ef2"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Rasa Bai",
+  "email": "rbaikstiene@gmail.com",
+  "password": "$2a$12$4pnfBjfRx2enLcamflGDmuFwI/4yBsA.Nl9NXuTwqnHNlKSjyEdOy",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149398880"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce494ac92b92523b36ef4"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Nijolė Močiutė",
+  "email": "nijolyte222@gmail.com",
+  "password": "$2a$12$AUv/qxIZhUMwPNp6s1a5p.JlQN9yjhbVoBhVoM0SSgfsboeECiqsS",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149460257"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce5c4ac92b92523b36ef6"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Lukas Baikštis",
+  "email": "lukas.baikstis@gmail.com",
+  "password": "$2a$12$tab4BrXBrj6fEusZ/jsQ2OITabQsJFrhsfo5EDn1OfHwcoKd6o1sa",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149764465"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce5e4ac92b92523b36ef8"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Vilius Baikštis",
+  "email": "baiksciai@gmail.com",
+  "password": "$2a$12$cPdj7yIK1cGio4F2sqjSOul7bmlCzr4omkHrnLQ3G3uAbjXhAQ0eS",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149796901"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce602ac92b92523b36efa"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Gida Močiutė",
+  "email": "gbaikstiene@gmail.com",
+  "password": "$2a$12$eKwwt9K79MjmukLvWkwZoervvStbGnsstquRUEUkxaxI/UJtjtshG",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149826122"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce62dac92b92523b36efc"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Žila Baba",
+  "email": "elenabaikstiene@gmail.com",
+  "password": "$2a$12$cCShGEJQm2Sbshgmr2Y1E.AncGk7PzSVfxSY2UrK/Dk5aE7he0hAy",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149869754"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64cce64fac92b92523b36efe"
+  },
+  "photo": "default.jpg",
+  "role": "user",
+  "active": true,
+  "name": "Pode Asta",
+  "email": "asta7777@msn.com",
+  "password": "$2a$12$UYym5U5rH6kkHo07roq/weUsQTlpMuK8DxeOx/Zm6q5Q0JwDr2rvW",
+  "passwordChangedAt": {
+    "$date": {
+      "$numberLong": "1691149903084"
+    }
+  },
+  "__v": 0
+}]

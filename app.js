@@ -11,14 +11,12 @@ const compression = require('compression');
 const cors = require('cors');
 
 const AppError = require('./utils/appError');
+
 const globalErrorHandler = require('./controllers/errorControler');
-const tourRouter = require('./routers/tourRoutes');
+const postRouter = require('./routers/postRoutes');
 const userRouter = require('./routers/userRoutes');
 const reviewRouter = require('./routers/reviewRoutes');
-const bookingRouter = require('./routers/bookingRoutes');
-const bookingController = require('./controllers/bookingController');
-
-const viewRouter = require('./routers/viewRoutes');
+const viewRouter = require('./routers/viewRoutes'); /// kazkokia klaida yra cia
 
 const app = express();
 
@@ -34,7 +32,7 @@ app.use(cors());
 // Galima  naudoti tik konkreciam adresui
 // app.use(
 //   cors({
-//     origin: 'wwww.natours.com',
+//     origin: '127.0.0.1:3000/',
 //   })
 // );
 
@@ -111,11 +109,6 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // request ateinantis turi b8ti STREAM, bet ne JSON formatu. Todel sis route yra sioje vientoje. Pries BODY PARSER funkcija
-app.post(
-  '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
-  bookingController.webhookCheckout
-);
 
 // Body parser, reading data from the body into req.body
 app.use(express.json({ limit: '10kb' }));
@@ -163,10 +156,9 @@ app.use((req, res, next) => {
 /// ROUTES
 
 app.use('/', viewRouter);
-app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
-app.use('/api/v1/bookings', bookingRouter);
 
 //kai ivedamas blogas rout'as yra pasiekiama si vieta  ir ivydomas kodas zemiau. Taip gauname zinute, kad ivestas routas neegzistuoja.
 //Si kodo vieta yra pasiekiama tik tada kai virs jos esancio eilutes nesuveikia.

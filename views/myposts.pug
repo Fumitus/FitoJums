@@ -1,0 +1,16 @@
+extends base
+
+block content
+  main.main
+    .card-container
+        each post in posts
+            .card
+                .card__header
+                    h3.heading-tertirary
+                        span= post.timeStamp
+                .card__details  
+                    p.card__text= `${post.timeStamp.toLocaleString('en-us', {month: 'numeric', year: 'numeric', day: '2-digit'})}`
+                    p.card__text= post.body
+                .card__footer
+                    p.card__ratings
+                    a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai

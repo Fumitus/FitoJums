@@ -1,7 +1,7 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const Tour = require('../../models/tourModel');
+const Post = require('../../models/postModel');
 const User = require('../../models/userModel');
 const Review = require('../../models/reviewModel');
 
@@ -23,16 +23,16 @@ mongoose
   });
 
 // read JSON file
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`));
-const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`));
-const reviews = JSON.parse(fs.readFileSync(`${__dirname}/reviews.json`));
+// const posts = JSON.parse(fs.readFileSync(`${__dirname}/final_posts.json`));
+// const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`));
+const reviews = JSON.parse(fs.readFileSync(`${__dirname}/final_reviewa.json`));
 
 //IMPORD DATA to DB
 
 const importData = async () => {
   try {
-    await Tour.create(tours);
-    await User.create(users, { validateBeforeSave: false });
+    // await Post.create(posts);
+    // await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
     console.log('Data from file copied to DB succesfully');
   } catch (err) {
@@ -45,8 +45,8 @@ const importData = async () => {
 
 const deleteData = async () => {
   try {
-    await Tour.deleteMany();
-    await User.deleteMany();
+    await Post.deleteMany();
+    // await User.deleteMany();
     await Review.deleteMany();
     console.log('Data from  DB succesfully deleted');
   } catch (err) {

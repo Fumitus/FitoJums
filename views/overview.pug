@@ -2,45 +2,29 @@ extends base
 
 block content
   main.main
+    .post-view__content
+        .post-view__form-container
+            h2.heading-secondary.ma-bt-md Įrašyk ir prisimink       
+            form.form.form-post-data
+                .form__group
+                    label.form__label(for='irasas') Parašyk kas tai pasakė
+                    input#author.form__input(type='text', placeholder='Vaiko vardas', required, name='author')        
+                .form__group.ma-bt-md
+                    label.form__label(for='irasas') Vieta naujam įrašui
+                    input#body.form__input(type='text', placeholder='Linksma frazė', required, name='body')
+
+                .form__group.right
+                    button.btn.btn--small.btn--green Išsaugoti šią mintį
+
     .card-container
-
-
-        each tour in tours
+        each post in posts
             .card
                 .card__header
-                    .card__picture
-                        .card__picture-overlay &nbsp;
-                        img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
                     h3.heading-tertirary
-                        span= tour.name
-
-                .card__details
-                    h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
-                    p.card__text= tour.summary
-                    .card__data
-                        svg.card__icon
-                            use(xlink:href='/img/icons.svg#icon-map-pin')
-                        span= tour.startLocation.description
-                    .card__data
-                        svg.card__icon
-                            use(xlink:href='/img/icons.svg#icon-calendar')
-                        span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric', day: '2-digit'})
-                    .card__data
-                        svg.card__icon
-                            use(xlink:href='/img/icons.svg#icon-flag')
-                        span= `${tour.locations.length} stops`
-                    .card__data
-                        svg.card__icon
-                            use(xlink:href='/img/icons.svg#icon-user')
-                        span= `${tour.maxGroupSize} people`
-
+                        span= post.timeStamp
+                .card__details  
+                    p.card__text= `${post.timeStamp.toLocaleString('en-us', {month: 'numeric', year: 'numeric', day: '2-digit'})}`
+                    p.card__text= post.body
                 .card__footer
-                    p
-                        span.card__footer-value= `Eur ${tour.price}`
-                        | 
-                        span.card__footer-text per person
                     p.card__ratings
-                        span.card__footer-value= `${tour.ratingsAverage}`
-                        | 
-                        span.card__footer-text= `rating (${tour.ratingsQuantity})`
-                    a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+                    a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai

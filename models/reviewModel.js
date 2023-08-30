@@ -1,34 +1,37 @@
 const mongoose = require('mongoose');
-const { findByIdAndUpdate, findByIdAndDelete } = require('./tourModel');
-const Tour = require('./tourModel');
+const { findByIdAndUpdate, findByIdAndDelete } = require('./postModel');
+const Post = require('./postModel');
 
 const reviewSchema = new mongoose.Schema(
   {
     review: {
       type: String,
-      require: [true, 'Review cannot be empty!'],
+      required: [true, 'Review cannot be empty!'],
       trim: true,
       maxlength: [100, 'A review must be less than least 100 character long'],
     },
-    rating: {
-      type: Number,
-      min: 1,
-      max: 5,
+    review_html: {
+      type: String,
+      trim: true,
+      maxlength: [100, 'A review must be less than least 100 character long'],
     },
     createdAt: {
       type: Date,
       default: Date.now(),
     },
-    tour: {
+    post: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Tour',
-      require: [true, 'Review must have a reference tour.'],
+      ref: 'Post',
+      required: [true, 'Review must have a reference post.'],
     },
+    disabled: Boolean,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      require: [true, 'Review must belong to a User.'],
+      required: [true, 'Review must belong to a User.'],
     },
+    author_id: Number,
+    post_id: Number,
   },
   {
     toJSON: { virtuals: true },
@@ -36,7 +39,7 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
-reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
+reviewSchema.index({ post: 1, user: 1 }, { unique: false });
 
 reviewSchema.pre(/^find/, function (next) {
   // this.populate({
@@ -54,40 +57,6 @@ reviewSchema.pre(/^find/, function (next) {
   next();
 });
 
-reviewSchema.statics.calcAverageRatings = async function (tourId) {
-  const stats = await this.aggregate([
-    {
-      $match: { tour: tourId },
-    },
-    {
-      $group: {
-        _id: '$tour',
-        nRating: { $sum: 1 },
-        avgRating: { $avg: '$rating' },
-      },
-    },
-  ]);
-
-  // console.log(stats);
-
-  if (stats.length > 0) {
-    await Tour.findByIdAndUpdate(tourId, {
-      ratingsAverage: stats[0].avgRating,
-      ratingsQuantity: stats[0].nRating,
-    });
-  } else {
-    await Tour.findByIdAndUpdate(tourId, {
-      ratingsAverage: 0,
-      ratingsQuantity: 4.5,
-    });
-  }
-};
-
-reviewSchema.post('save', function () {
-  //this. points to current review
-  this.constructor.calcAverageRatings(this.tour);
-});
-
 // findByIdAndUpdate
 // findByIdAndDelete
 reviewSchema.pre(/^findOneAnd/, async function (next) {
@@ -95,10 +64,10 @@ reviewSchema.pre(/^findOneAnd/, async function (next) {
   console.log(this.r);
 });
 
-reviewSchema.post(/^findOneAnd/, async function () {
-  // await this.findOne(); Does NOT work here because query has already executed
-  await this.r.constructor.calcAverageRatings(this.r.tour);
-});
+// reviewSchema.post(/^findOneAnd/, async function () {
+//   // await this.findOne(); Does NOT work here because query has already executed
+//   await this.r.constructor.calcAverageRatings(this.r.tour);
+// });
 
 const Review = mongoose.model('Review', reviewSchema);
 

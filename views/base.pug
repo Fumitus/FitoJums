@@ -6,22 +6,22 @@ html
             
             //- <link rel="stylesheet" href="css/style.css" />
             link(link rel='stylesheet' href='/css/style.css')
-            link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+            link(rel='shortcut icon' type='image/ico' href='/img/buterfly.ico')
             link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
             meta(name='viewport' content='width=device-width, initial-scale=1.0')
-            title Natours | #{title}
+            title Familia nostra | #{title}
     body(data-alert=`${alert ? alert : ''}`)
         // HEADER
         include _header
         //- CONTENT
         block content 
+        
             h1 This is a placeholder content
         // FOOTER
         include _footer
         //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js')
         //- script(src='/js/login.js')
         //- script(src='/js/mapbox.js')
-        script(type='module' src='https://js.stripe.com/v3/')
         script(type='module' src='/js/bundled/index.js')
         
 
