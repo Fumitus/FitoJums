@@ -2,3 +2,7 @@ node_modules/
 *.env
 .parcel-cache/
 .vscode/
+.azure
+.parcel-cache
+.idea/
+old_dependencies*
