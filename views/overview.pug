@@ -2,20 +2,31 @@ extends base
 
 block content
   main.main
-    .post-view__content
-        .post-view__form-container
-            h2.heading-secondary.ma-bt-md Įrašyk ir prisimink       
-            form.form.form-post-data
-                .form__group
-                    label.form__label(for='irasas') Parašyk kas tai pasakė
-                    input#author.form__input(type='text', placeholder='Vaiko vardas', required, name='author')        
-                .form__group.ma-bt-md
-                    label.form__label(for='irasas') Vieta naujam įrašui
-                    input#body.form__input(type='text', placeholder='Linksma frazė', required, name='body')
+    if user
+        .post-view__content
+            .post-view__form-container
+                if user
+                    h2.heading-secondary.ma-bt-md Įrašyk ir prisimink      
+                    form.form.form-post-data
+                    
+                        .form__group
+                            label.form__label(for='irasas') Parašyk kas tai pasakė
+                            input#author.form__input(type='text', placeholder='Vaiko vardas', required, name='author')        
+                        .form__group.ma-bt-md
+                            label.form__label(for='irasas') Vieta naujam įrašui
+                            input#body.form__input(type='text', placeholder='Linksma frazė', required, name='body')
+                        .form__group.right
+                            button.btn.btn--small.btn--green Išsaugoti šią mintį
 
-                .form__group.right
-                    button.btn.btn--small.btn--green Išsaugoti šią mintį
+    else
+        .post-view__content
+            .post-view__form-container 
+                h2.heading-secondary.ma-bt-md       
+                form.form.form-post-data
+                a.btn.btn--green.span-all-rows(href='/login') Prisijunk jei nori parašyti!
 
+
+        
     .card-container
         each post in posts
             .card
