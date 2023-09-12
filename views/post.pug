@@ -35,7 +35,7 @@ block content
     section.section-description         
 
         .description-box
-            h2.heading-secondary.ma-bt-lg= `Įsimintina šeimos frazę užrašė ${post.author_id}`
+            h2.heading-secondary.ma-bt-lg= `Įsimintina šeimos frazę užrašė ${post.postAuthor[0].name}`
 
             - const paragraph = post.body.split('\n')
             each p in paragraph

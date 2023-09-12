@@ -56,6 +56,12 @@ postShcema.virtual('reviews', {
   localField: '_id',
 });
 
+postShcema.virtual('postAuthor', {
+  ref: 'User',
+  foreignField: '_id',
+  localField: 'author_id',
+});
+
 //Document midleware: runs before .save() and .() of document
 // postShcema.pre('save', function (next) {
 // console.log(this);

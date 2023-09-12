@@ -16,17 +16,22 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 });
 
 exports.getPost = catchAsync(async (req, res, next) => {
-  const post = await Post.findOne({ _id: req.params.postId }).populate({
-    path: 'reviews',
-    fields: 'review user',
-  });
+  const post = await Post.findOne({ _id: req.params.postId })
+    .populate({
+      path: 'reviews',
+      fields: 'review user',
+    })
+    .populate({
+      path: 'postAuthor',
+      fields: 'name',
+    });
 
   if (!post) {
     return next(new AppError('There is no Post with that name', 404));
   }
 
   res.status(200).render('post', {
-    title: `Vartotojo ${post.author_id} įrašas.`,
+    title: `Vartotojo ${post.postAuthor[0].name} įrašas.`,
     post: post,
   });
 });
