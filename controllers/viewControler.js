@@ -6,7 +6,8 @@ const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeatures');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
-  const posts = await Post.find();
+  const features = new APIFeatures(Post.find(), req.query).paginate().sort();
+  const posts = await features.query;
 
   res.status(200).render('overview', {
     title: 'Visi įrašai',
