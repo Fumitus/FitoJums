@@ -1,0 +1,39 @@
+//- mixin pagination(page_num, n)       
+//-         while n < page_num+1
+//-             a.btn.btn--green.btn--small(href="?page="+n)=n++
+
+//- You can include mixin in your .pug file:
+//- include ./pagination.pug
+//- Use mixin in your template:
+//- +pagination(pages, current, link)
+//- Dont forget to pass your data (pages, link etc..)
+
+mixin pagination(items, current, items_per_page)
+  -var pages = Number(current) - Number(items)
+  if items > 1
+    .d-flex.justify-content-center  
+      ul.pagination
+        if curent == 1
+          a.btn.btn--green.btn--small.disabled Atgal
+        else  
+          a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)-1}`) Atgal
+        -var i = (Number(current) > 5 ? Number(current) - 4 : 1);
+        if i !== 1
+
+          a.btn.btn--green.btn--small.disabled ... 
+        - for(; i <= (Number(current) + 4) && i <= items; i++)
+          if i == current 
+            a.btn.btn--green.btn--small.disabled(href=`?limit=${items_per_page}&page=${i}`)=i
+          else  
+            
+            a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${i}`)=i
+          if (i == Number(current) + 4 && i < items) 
+             
+            a.btn.btn--green.btn--small.disabled ...
+        if (items < items_per_page) 
+         
+          a.btn.btn--green.btn--small.disabled Pirmyn 
+        else       
+          a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)+1}`) Pirmyn
+  if items <1        
+    a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)-1}`) Atgal

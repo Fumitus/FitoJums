@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const slugify = require('slugify');
 const validator = require('validator');
 const User = require('./userModel');
@@ -115,6 +116,8 @@ postShcema.post(/^find/, function (docs, next) {
   // console.log(docs);
   next();
 });
+
+postShcema.plugin(mongoosePaginate);
 
 const Post = mongoose.model('Post', postShcema);
 

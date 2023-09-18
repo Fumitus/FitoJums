@@ -10,6 +10,8 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   const posts = await features.query;
 
   res.status(200).render('overview', {
+    current_page: req.query.page,
+    pages: posts.length,
     title: 'Visi įrašai',
     posts: posts,
   });
@@ -37,20 +39,28 @@ exports.getPost = catchAsync(async (req, res, next) => {
 });
 
 exports.getMyPosts = catchAsync(async (req, res, next) => {
-  const posts = await Post.aggregate([
-    {
-      $match: { author_id: req.body.author_id },
-    },
-    {
-      $sort: { timeStamp: -1 },
-    },
-  ]);
+  const features = new APIFeatures(
+    Post.aggregate([
+      {
+        $match: { author_id: req.body.author_id },
+      },
+      {
+        $sort: { timeStamp: -1 },
+      },
+    ]),
+    req.query
+  )
+    .paginate()
+    .sort();
+  const posts = await features.query;
 
   if (!posts) {
     return next(new AppError('You have no Posts', 404));
   }
 
   res.status(200).render('myposts', {
+    current_page: req.query.page,
+    pages: posts.length,
     title: `Vartotojo įrašai.`,
     posts,
   });
