@@ -10,30 +10,43 @@
 
 mixin pagination(items, current, items_per_page)
   -var pages = Number(current) - Number(items)
-  if items > 1
+  if (items < items_per_page) 
     .d-flex.justify-content-center  
       ul.pagination
-        if curent == 1
-          a.btn.btn--green.btn--small.disabled Atgal
+        if current == 1
+          a.btn.btn--green.btn--small(type='hidden') Atgal
         else  
           a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)-1}`) Atgal
         -var i = (Number(current) > 5 ? Number(current) - 4 : 1);
         if i !== 1
-
-          a.btn.btn--green.btn--small.disabled ... 
-        - for(; i <= (Number(current) + 4) && i <= items; i++)
+          a.btn.btn--green.btn--small(type='hidden') ... 
+        - for(; i <= (Number(current) + 4) && i <= Number(current); i++)
           if i == current 
-            a.btn.btn--green.btn--small.disabled(href=`?limit=${items_per_page}&page=${i}`)=i
-          else  
-            
+            a.btn.btn--green.btn--small(type='hidden', href=`?limit=${items_per_page}&page=${i}`)=i
+          else            
             a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${i}`)=i
-          if (i == Number(current) + 4 && i < items) 
+          if (i == Number(current) + 4 && i < Number(current))  
+            a.btn.btn--green.btn--small(type='hidden') ...
+  else 
+    .d-flex.justify-content-center  
+      ul.pagination
+        if current == 1
+          a.btn.btn--green.btn--small(type='hidden') Atgal
+        else  
+          a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)-1}`) Atgal
+        -var i = (Number(current) > 5 ? Number(current) - 4 : 1);
+        if i !== 1
+          a.btn.btn--green.btn--small(type='hidden') ... 
+        - for(; i <= (Number(current) + 4) && i <= Number(current) + 1; i++)
+          if i == current 
+            a.btn.btn--green.btn--small(type='hidden', href=`?limit=${items_per_page}&page=${i}`)=i
+          else            
+            a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${i}`)=i
+          if (i == Number(current) + 4 && i < Number(current)) 
              
-            a.btn.btn--green.btn--small.disabled ...
+            a.btn.btn--green.btn--small(type='hidden') ...
         if (items < items_per_page) 
          
-          a.btn.btn--green.btn--small.disabled Pirmyn 
+          a.btn.btn--green.btn--small(type='hidden') Pirmyn 
         else       
           a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)+1}`) Pirmyn
-  if items <1        
-    a.btn.btn--green.btn--small(href=`?limit=${items_per_page}&page=${Number(current)-1}`) Atgal
