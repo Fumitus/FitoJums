@@ -24,7 +24,7 @@ block content
 
         .heading-box
             h1.heading-primary
-                span= `${post.author} mintis`
+                span= `${post.client}`
                 
             .heading-box__group
                 .heading-box__detail
@@ -35,7 +35,7 @@ block content
     section.section-description         
 
         .description-box
-            h2.heading-secondary.ma-bt-lg= `Įsimintina šeimos frazę užrašė ${post.postAuthor[0].name}`
+            h2.heading-secondary.ma-bt-lg= `Receptą užrašė ${post.postAuthor[0].name}`
 
             - const paragraph = post.body.split('\n')
             each p in paragraph

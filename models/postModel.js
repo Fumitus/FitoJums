@@ -8,7 +8,7 @@ const postShcema = new mongoose.Schema(
   {
     body: {
       type: String,
-      required: [true, 'Post must belog to a user.'],
+      required: [true, 'Įrašas turi turėti autorių.'],
       unique: false,
       trim: true,
       // validate: [
@@ -24,15 +24,19 @@ const postShcema = new mongoose.Schema(
     author_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: [true, 'Post must belong to a user.'],
+      required: [true, 'Įrašas turi turėti autorių.'],
     },
     old_id: Number,
-    author: {
+    client: {
       type: String,
-      required: [true, 'Pridėkite minties pasakytoją'],
+      required: [true, 'Pridėkite recepto autorių'],
       unique: false,
       trim: true,
-      default: 'Vaiko',
+      default: 'Pacientas',
+    },
+    order_status: {
+      type: Boolean,
+      default: false,
     },
 
     ////=================================================================================

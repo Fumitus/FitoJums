@@ -11,13 +11,13 @@ block content
                     form.form.form-post-data
                     
                         .form__group
-                            label.form__label(for='irasas') Parašyk kas tai pasakė
-                            input#author.form__input(type='text', placeholder='Vaiko vardas', required, name='author')        
+                            label.form__label(for='irasas') Kliento vardas ir pavardė
+                            input#client.form__input(type='text', placeholder='Vardas Pavardė', required, name='client')        
                         .form__group.ma-bt-md
-                            label.form__label(for='irasas') Vieta naujam įrašui
-                            input#body.form__input(type='text', placeholder='Linksma frazė', required, name='body')
+                            label.form__label(for='irasas') Vieta parinktiems komponentams
+                            input#body.form__input(type='text', placeholder='Receptas', required, name='body')
                         .form__group.right
-                            button.btn.btn--small.btn--green Išsaugoti šią mintį
+                            button.btn.btn--small.btn--green Išsaugoti
 
     else
         .post-view__content

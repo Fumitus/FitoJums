@@ -30,9 +30,9 @@ if (postForm) {
   postForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const body = document.getElementById('body').value;
-    const author = document.getElementById('author').value;
+    const client = document.getElementById('client').value;
 
-    newpost({ body, author }, 'data');
+    newpost({ body, client }, 'data');
   });
 }
 
