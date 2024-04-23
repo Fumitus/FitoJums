@@ -169,10 +169,14 @@ if (reviewForm) reviewForm.addEventListener("submit", (e)=>{
 if (postForm) postForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     const body = document.getElementById("body").value;
+    const phones = document.getElementById("phones").value;
+    const delivery = document.getElementById("delivery").value;
     const client = document.getElementById("client").value;
     (0, _post.newpost)({
         body,
-        client
+        client,
+        phones,
+        delivery
     }, "data");
 });
 if (mapBox) {

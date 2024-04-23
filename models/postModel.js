@@ -3,6 +3,7 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const slugify = require('slugify');
 const validator = require('validator');
 const User = require('./userModel');
+const { kMaxLength } = require('buffer');
 
 const postShcema = new mongoose.Schema(
   {
@@ -34,9 +35,24 @@ const postShcema = new mongoose.Schema(
       trim: true,
       default: 'Pacientas',
     },
-    order_status: {
+    order_finished: {
       type: Boolean,
       default: false,
+    },
+    phones: {
+      type: String,
+      required: [true, 'Reikalingas mobilaus telefono numeris pristatymui.'],
+      trim: true,
+      minlength: [8, 'Telefono numeris turi būti 8 skaičių be šalies kodo!'],
+      maxlength: [8, 'Telefono numeris turi būti max 8 skaičių'],
+      validate: [
+        validator.isNumeric,
+        'Telefono numeris turi būti tik skaičiai be šalies kodo!',
+      ],
+    },
+    delivery: {
+      type: String,
+      required: [true, 'Reikalingas adresas arba paštomatas pristatymui'],
     },
 
     ////=================================================================================

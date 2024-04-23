@@ -12,7 +12,16 @@ block content
                     
                         .form__group
                             label.form__label(for='irasas') Kliento vardas ir pavardė
-                            input#client.form__input(type='text', placeholder='Vardas Pavardė', required, name='client')        
+                            input#client.form__input(type='text', placeholder='Vardas Pavardė', required, name='client')
+
+                        .form__group
+                            label.form__label(for='irasas') Kliento mobilaus telefono numeris
+                            input#phones.form__input(type='text', placeholder='Telefono numeris +370...', required, name='phones')
+
+                        .form__group
+                            label.form__label(for='irasas') Duomenys pristatymui
+                            input#delivery.form__input(type='text', placeholder='Pristatymo adresas arba paštomatas', required, name='delivery')
+
                         .form__group.ma-bt-md
                             label.form__label(for='irasas') Vieta parinktiems komponentams
                             input#body.form__input(type='text', placeholder='Receptas', required, name='body')

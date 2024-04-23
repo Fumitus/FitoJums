@@ -30,9 +30,11 @@ if (postForm) {
   postForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const body = document.getElementById('body').value;
+    const phones = document.getElementById('phones').value;
+    const delivery = document.getElementById('delivery').value;
     const client = document.getElementById('client').value;
 
-    newpost({ body, client }, 'data');
+    newpost({ body, client, phones, delivery }, 'data');
   });
 }
 
