@@ -40,19 +40,13 @@ exports.getPost = catchAsync(async (req, res, next) => {
 
 exports.getMyPosts = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(
-    Post.aggregate([
-      {
-        $match: { author_id: req.body.author_id },
-      },
-      {
-        $sort: { timeStamp: -1 },
-      },
-    ]),
+    Post.find({ author_id: req.body.author_id }),
     req.query
   )
     .paginate()
     .sort();
   const posts = await features.query;
+  console.log(`ObjectId('${req.body.author_id}')`);
 
   if (!posts) {
     return next(new AppError('You have no Posts', 404));
