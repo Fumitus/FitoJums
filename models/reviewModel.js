@@ -20,13 +20,13 @@ const reviewSchema = new mongoose.Schema(
       default: Date.now(),
     },
     post: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.String,
       ref: 'Post',
       required: [true, 'Review must have a reference post.'],
     },
     disabled: Boolean,
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.String,
       ref: 'User',
       required: [true, 'Review must belong to a User.'],
     },

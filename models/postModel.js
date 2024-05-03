@@ -23,7 +23,7 @@ const postShcema = new mongoose.Schema(
       default: Date.now(),
     },
     author_id: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.String,
       ref: 'User',
       required: [true, 'Įrašas turi turėti autorių.'],
     },
