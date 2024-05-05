@@ -83,9 +83,7 @@ postShcema.virtual('postAuthor', {
   localField: 'author_id',
 });
 
-//Document midleware: runs before .save() and .() of document
-// postShcema.pre('save', function (next) {
-// console.log(this);
+//Document midleware: runs before .save() and .() of documentconsole.log(post)
 // this.slug = slugify(this.name, { lower: true });
 // next();
 // }); //veiksmas kuris bus atliekamas Pries tikra veiksma

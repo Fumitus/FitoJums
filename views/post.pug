@@ -41,6 +41,12 @@ block content
             each p in paragraph
                 p.description__text= p
 
+        .description-box
+            h2.heading-secondary.ma-bt-lg= `Duomenys pristatymui`
+
+            - const deliveryParagraph = post.delivery.split('\n')
+            each d in deliveryParagraph 
+                p.description__text= d
 
 
     section.section-reviews
