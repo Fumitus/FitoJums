@@ -28,6 +28,23 @@ block content
                         .form__group.right
                             button.btn.btn--small.btn--green Išsaugoti
 
+        - if (user.role === 'admin')        
+            .card-container
+                each post in posts
+                    .card
+                        .card__header
+                            h3.heading-tertirary
+                                span= post.timeStamp
+                        .card__details  
+                            p.card__text= `${post.timeStamp.toLocaleString('en-us', {month: 'numeric', year: 'numeric', day: '2-digit'})}`
+                            p.card__text= post.body
+                        .card__footer
+                            p.card__ratings
+                            a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai
+
+            .pagination-view__content
+                +pagination(pages, current_page, 9)
+
     else
         .post-view__content
             .post-view__form-container 
@@ -36,21 +53,6 @@ block content
                 a.btn.btn--green.span-all-rows(href='/login') Prisijunk jei nori parašyti!
 
 
-        
-    .card-container
-        each post in posts
-            .card
-                .card__header
-                    h3.heading-tertirary
-                        span= post.timeStamp
-                .card__details  
-                    p.card__text= `${post.timeStamp.toLocaleString('en-us', {month: 'numeric', year: 'numeric', day: '2-digit'})}`
-                    p.card__text= post.body
-                .card__footer
-                    p.card__ratings
-                    a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai
 
-    .pagination-view__content
-        +pagination(pages, current_page, 9)
     
         
