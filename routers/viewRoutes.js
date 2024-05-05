@@ -25,4 +25,6 @@ router.post(
   viewController.updateUserData
 );
 
+router.get('/pendingOrders', authController.protect, viewController.getPending);
+
 module.exports = router;

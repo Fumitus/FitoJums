@@ -98,3 +98,33 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser,
   });
 });
+
+exports.getPending = catchAsync(async (req, res, next) => {
+  const features = new APIFeatures(
+    Post.aggregate([
+      {
+        $match: {
+          order_finished: false,
+        },
+      },
+      {
+        $sort: { timeStamp: -1 },
+      },
+    ]),
+    req.query
+  )
+    .paginate()
+    .sort();
+  const posts = await features.query;
+
+  if (!posts) {
+    return next(new AppError('No pending orders', 404));
+  }
+
+  res.status(200).render('myposts', {
+    current_page: req.query.page,
+    pages: posts.length,
+    title: `Nebaigti užsakymai.`,
+    posts,
+  });
+});
