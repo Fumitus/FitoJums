@@ -204,6 +204,8 @@ if (userDataForm) userDataForm.addEventListener("submit", (e)=>{
     const form = new FormData();
     form.append("name", document.getElementById("name").value);
     form.append("email", document.getElementById("email").value);
+    form.append("userPhone", document.getElementById("userPhone").value);
+    form.append("company", document.getElementById("company").value);
     form.append("photo", document.getElementById("photo").files[0]);
     (0, _updateSettings.updateSettings)(form, "data");
 });

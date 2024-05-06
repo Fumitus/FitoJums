@@ -35,11 +35,17 @@ block content
                     //- WITH API
                     form.form.form-user-data
                         .form__group
-                            label.form__label(for='name') Name
+                            label.form__label(for='name') Vardas
                             input#name.form__input(type='text', value=`${user.name}`, required, name='name')
                         .form__group.ma-bt-md
-                            label.form__label(for='email') Email address
+                            label.form__label(for='email') E-paštas
                             input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                        .form__group.ma-bt-md
+                            label.form__label(for='userPhone') Tel. numeris
+                            input#userPhone.form__input(type='userPhone', value=`${user.userPhone}`, required, name='userPhone')
+                        .form__group.ma-bt-md
+                            label.form__label(for='company') Įmonės pavadinimas
+                            input#company.form__input(type='company', value=`${user.company}`, required, name='company')
                         .form__group.form__photo-upload
                             img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
                             input.form__upload(type='file', accept='image/*', id='photo', name='photo')

@@ -16,6 +16,21 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please supply a valid email'],
   },
+  company: {
+    type: String,
+    trim: true,
+    maxlength: [40, 'Įmonės pavadinimas turi būti ne ilgesnis nei 40 simbolių'],
+  },
+  userPhone: {
+    type: String,
+    trim: true,
+    minlength: [8, 'Telefono numeris turi būti 8 skaičių be šalies kodo!'],
+    maxlength: [8, 'Telefono numeris turi būti max 8 skaičių'],
+    validate: [
+      validator.isNumeric,
+      'Telefono numeris turi būti tik skaičiai be šalies kodo!',
+    ],
+  },
   photo: {
     type: String,
     default: 'default.jpg',

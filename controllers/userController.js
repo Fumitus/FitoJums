@@ -72,7 +72,13 @@ exports.updateMe = async (req, res, next) => {
     );
   }
   // 2) filtered out fields which are not allowed to change
-  const filteredBody = filterObj(req.body, 'name', 'email');
+  const filteredBody = filterObj(
+    req.body,
+    'name',
+    'email',
+    'company',
+    'userPhone'
+  );
 
   if (req.file) filteredBody.photo = req.file.filename;
 
