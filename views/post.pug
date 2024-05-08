@@ -49,11 +49,13 @@ block content
                 p.description__text= d
 
            
-            form.form.form-delivery-data
-                input#postId.form__input(type='hidden',value=`${post._id}`, name='postId')
-                input#order_finished.form__input(type='hidden', value='true', name='order_finished')   
-
-                button.btn.btn--small.btn--red Užbaigti užsakymną?
+            if post.order_finished
+                h2.heading-secondary.ma-bt-lg= `Užsakymas užbaigtas`
+            else 
+                form.form.form-delivery-data
+                    input#postId.form__input(type='hidden',value=`${post._id}`, name='postId')
+                    input#order_finished.form__input(type='hidden', value='true', name='order_finished')   
+                    button.btn.btn--small.btn--red Užbaigti užsakymą?
 
 
     section.section-reviews
