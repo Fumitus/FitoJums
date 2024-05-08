@@ -37,10 +37,14 @@ block content
                                 span= post.timeStamp
                         .card__details  
                             p.card__text= `${post.timeStamp.toLocaleString('en-us', {month: 'numeric', year: 'numeric', day: '2-digit'})}`
-                            p.card__text= post.body
+                            p.card__text= post.body                            
                         .card__footer
-                            p.card__ratings
-                            a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai
+                            if post.order_finished
+                                h3.order__status Užsakymas užbaigtas
+                                        svg.order__check(class=`order__check--active`)
+                                            use(xlink:href=`/img/icons.svg#icon-check-square`)
+                        p.card__ratings
+                        a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai
 
             .pagination-view__content
                 +pagination(pages, current_page, 9)

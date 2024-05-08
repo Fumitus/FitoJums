@@ -681,7 +681,29 @@ body {
 .reviews__star--inactive {
   fill: #bbb;
 }
-
+.order_status__text {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+  font-weight: 400;
+}
+.order__status {
+  margin-top: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.order__check {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1px;
+}
+.order__check--active {
+  fill: #55c57a;
+}
+.order__check--inactive {
+  fill: #bbb;
+}
 .section-cta {
   margin-top: calc(0px - var(--section-rotate));
   padding: 3rem;
