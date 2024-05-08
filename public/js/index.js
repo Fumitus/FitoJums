@@ -4,7 +4,7 @@ import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { showAlert } from './alerts';
-import { newpost } from './post';
+import { finishorder, newpost } from './post';
 import { newreview } from './review';
 
 // DOM elements
@@ -15,6 +15,7 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const postForm = document.querySelector('.form-post-data');
 const reviewForm = document.querySelector('.form-review-data');
+const deliveryForm = document.querySelector('.form-delivery-data');
 
 if (reviewForm) {
   reviewForm.addEventListener('submit', (e) => {
@@ -35,6 +36,16 @@ if (postForm) {
     const client = document.getElementById('client').value;
 
     newpost({ body, client, phones, delivery }, 'data');
+  });
+}
+
+if (deliveryForm) {
+  deliveryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const postId = document.getElementById('postId').value;
+    const order_finished = document.getElementById('order_finished').value;
+
+    finishorder({ postId, order_finished }, 'data');
   });
 }
 
@@ -94,7 +105,7 @@ if (userPasswordForm) {
     document.querySelector('.btn--save-password').textContent = 'Save password';
     document.getElementById('password-current').value = '';
     document.getElementById('password').value = '';
-    document.getElementById('password-confirm').value = '';••••••
+    document.getElementById('password-confirm').value = '';
   });
 }
 

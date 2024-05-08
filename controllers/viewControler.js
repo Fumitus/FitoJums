@@ -36,7 +36,6 @@ exports.getPost = catchAsync(async (req, res, next) => {
     title: `Vartotojo ${post.postAuthor[0].name} įrašas.`,
     post: post,
   });
-  console.log(post);
 });
 
 exports.getMyPosts = catchAsync(async (req, res, next) => {

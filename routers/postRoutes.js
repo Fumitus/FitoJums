@@ -27,6 +27,11 @@ router
     authController.protect,
     authController.restrictTo('admin'),
     postController.detelePost
+  )
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin'),
+    postController.updatePost
   );
 
 router.use('/:postId/', reviewRouter);

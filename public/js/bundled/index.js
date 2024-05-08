@@ -157,6 +157,7 @@ const userDataForm = document.querySelector(".form-user-data");
 const userPasswordForm = document.querySelector(".form-user-password");
 const postForm = document.querySelector(".form-post-data");
 const reviewForm = document.querySelector(".form-review-data");
+const deliveryForm = document.querySelector(".form-delivery-data");
 if (reviewForm) reviewForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     const post = document.getElementById("postId").value;
@@ -177,6 +178,15 @@ if (postForm) postForm.addEventListener("submit", (e)=>{
         client,
         phones,
         delivery
+    }, "data");
+});
+if (deliveryForm) deliveryForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const postId = document.getElementById("postId").value;
+    const order_finished = document.getElementById("order_finished").value;
+    (0, _post.finishorder)({
+        postId,
+        order_finished
     }, "data");
 });
 if (mapBox) {
@@ -4702,6 +4712,7 @@ const updateSettings = async (data, type)=>{
 /* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "newpost", ()=>newpost);
+parcelHelpers.export(exports, "finishorder", ()=>finishorder);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _alerts = require("./alerts");
@@ -4716,6 +4727,25 @@ const newpost = async (data)=>{
             (0, _alerts.showAlert)("success", "Naujas įrašas sukurtas sėkmingai!");
             window.setTimeout(()=>{
                 location.assign("/");
+            }, 1500);
+        }
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const finishorder = async (data)=>{
+    try {
+        const url = `/api/v1/posts/${data.postId}`;
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            url: url,
+            data: data
+        });
+        console.log(res.data);
+        if (res.data.status === "success") {
+            (0, _alerts.showAlert)("success", "Užsakymas užbaigtas sėkmingai!");
+            window.setTimeout(()=>{
+                location.assign("/pendingOrders/?page=1");
             }, 1500);
         }
     } catch (err) {

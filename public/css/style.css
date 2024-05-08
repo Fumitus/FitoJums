@@ -237,6 +237,13 @@ body {
 .btn--green::after {
   background-color: #55c57a;
 }
+.btn--red {
+  background-color: #eb4d4b;
+  color: #fff;
+}
+.btn--red::after {
+  background-color: #eb4d4b;
+}
 
 .btn--small {
   padding: 1.25rem 3rem !important;

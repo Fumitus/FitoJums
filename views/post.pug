@@ -48,6 +48,13 @@ block content
             each d in deliveryParagraph 
                 p.description__text= d
 
+           
+            form.form.form-delivery-data
+                input#postId.form__input(type='hidden',value=`${post._id}`, name='postId')
+                input#order_finished.form__input(type='hidden', value='true', name='order_finished')   
+
+                button.btn.btn--small.btn--red Užbaigti užsakymną?
+
 
     section.section-reviews
         .reviews
@@ -68,8 +75,6 @@ block content
                                 input#review.form__input(type='text', placeholder='Komentaras', required, name='review')
 
                                 input#postId.form__input(type='hidden',value=`${post._id}`, name='postId')
-
-                                
 
                             .form__group.right
                                 button.btn.btn--small.btn--green Komentuoti
