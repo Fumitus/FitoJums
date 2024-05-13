@@ -48,6 +48,8 @@ block content
             each d in deliveryParagraph 
                 p.description__text= d
 
+            p.description__text= `Kliento tel. nr. +370 ${post.phones}`
+
            
             if post.order_finished
                 h2.heading-secondary.ma-bt-lg= `Užsakymas užbaigtas`

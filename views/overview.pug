@@ -23,7 +23,7 @@ block content
                             input#delivery.form__input(type='text', placeholder='Pristatymo adresas arba paštomatas', required, name='delivery')
 
                         .form__group.ma-bt-md
-                            label.form__label(for='irasas') Vieta parinktiems komponentams
+                            label.form__label(for='irasas') Vieta paskyrimui
                             input#body.form__input(type='text', placeholder='Receptas', required, name='body')
                         .form__group.right
                             button.btn.btn--small.btn--green Išsaugoti
@@ -44,7 +44,7 @@ block content
                                         svg.order__check(class=`order__check--active`)
                                             use(xlink:href=`/img/icons.svg#icon-check-square`)
                         p.card__ratings
-                        a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie tai
+                        a.btn.btn--green.btn--small(href=`/post/${post._id}`) Daugiau apie užsakymą
 
             .pagination-view__content
                 +pagination(pages, current_page, 9)
